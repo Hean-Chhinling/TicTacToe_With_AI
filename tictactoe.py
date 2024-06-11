@@ -27,7 +27,7 @@ class TicTacToe:
         steps = list(state['steps'])
         steps.remove(step)
         return {
-            'next': 'X' if state['next'] == '0' else '0',
+            'next': 'X' if state['next'] == 'O' else 'O',
             'result': self.result(board, step, state['next']),
             'board': board,
             'steps': steps

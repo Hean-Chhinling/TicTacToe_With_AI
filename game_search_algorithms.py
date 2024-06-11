@@ -8,7 +8,7 @@ class QLearningAgent:
         self.n_actions = n_actions
         self.learning_rate = learning_rate
 
-        self.q_table = numpy.zeros((n_states, n_actions))  # q-table initial value
+        self.q_table = numpy.random.rand(n_states, n_actions)  # q-table initial value
 
     def act(self, state, epsilon):
         random_int = random.uniform(0, 1)
