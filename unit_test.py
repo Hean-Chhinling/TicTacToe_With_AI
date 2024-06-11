@@ -60,19 +60,25 @@ class TestTicTacToe(unittest.TestCase):
         self.assertEqual(self.game.result(state['board'], (3, 3), 'O'), -1)
 
     def test_is_leaf(self):
-        state_win = self.state_x_win
+        state_x_win = self.state_x_win
+        state_o_win = self.state_o_win
         state_draw = self.state_draw
 
-        self.assertTrue(self.game.is_leaf(state_win))
+        self.assertTrue(self.game.is_leaf(state_x_win))
+        self.assertTrue(self.game.is_leaf(state_o_win))
         self.assertTrue(self.game.is_leaf(state_draw))
 
     def test_goodness(self):
         state_x_win = self.state_x_win
         state_x_lose = self.state_o_win
+        state_o_win = self.state_o_win
+        state_o_lose = self.state_x_win
         state_draw = self.state_draw
 
         self.assertEqual(self.game.goodness(state_x_win, 'X'), 1)
         self.assertEqual(self.game.goodness(state_x_lose, 'X'), -1)
+        self.assertEqual(self.game.goodness(state_o_win, 'O'), 1)
+        self.assertEqual(self.game.goodness(state_o_lose, 'O'), -1)
         self.assertEqual(self.game.goodness(state_draw, 'X'), 0)
 
     def test_state_to_str(self):
