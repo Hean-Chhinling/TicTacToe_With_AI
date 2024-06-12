@@ -35,7 +35,7 @@ with open("state_to_id.pkl", "rb") as f:
 
 tic_tac_toe = TicTacToe()
 default_font = pygame.font.Font(None, 36)
-large_font = pygame.font.SysFont('Arial', 45)
+large_font = pygame.font.SysFont('Arial', 40)
 button_font = pygame.font.Font(None, 50)
 result_font = pygame.font.SysFont('Arial', 72, bold=True)
 
@@ -218,6 +218,7 @@ def main():
                                 continue
 
                             # Agent's turn
+                            time.sleep(0.8)
                             agent_turn()
 
             if event.type == pygame.KEYDOWN and game_started:

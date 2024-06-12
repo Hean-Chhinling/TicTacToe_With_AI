@@ -1,21 +1,24 @@
 import pickle
 from tictactoe import TicTacToe, state_to_str
 
+agent_f = open("tic_tac_toe_agent.pkl", "rb")
+ttt_agent = pickle.load(agent_f)
+
+state_to_id_f = open("state_to_id.pkl", "rb")
+state_to_id = pickle.load(state_to_id_f)
+
+
+def check_state_in_state_id(state_rep):
+    if state_rep not in state_to_id:
+        state_to_id[state_rep] = len(state_to_id)
+
 
 def main():
     tic_tac_toe = TicTacToe()
-    agent_f = open(
-        "tic_tac_toe_agent.pkl", "rb")
-    ttt_agent = pickle.load(agent_f)
-    state_to_id_f = open(
-        "state_to_id.pkl", "rb"
-    )
-    state_to_id = pickle.load(state_to_id_f)
 
     state = tic_tac_toe.initial
     state_representation = state_to_str(state)
-    if state_representation not in state_to_id:
-        state_to_id[state_representation] = len(state_to_id)
+    check_state_in_state_id(state_representation)
 
     is_done = False
 
@@ -39,8 +42,7 @@ def main():
 
         state = new_state.copy()
         state_representation = new_state_representation
-        if state_representation not in state_to_id:
-            state_to_id[state_representation] = len(state_to_id)
+        check_state_in_state_id(state_representation)
 
         if is_done:
             break
@@ -58,8 +60,7 @@ def main():
 
         state = tic_tac_toe.take_step(human_step, state)
         state_representation = state_to_str(state)
-        if state_representation not in state_to_id:
-            state_to_id[state_representation] = len(state_to_id)
+        check_state_in_state_id(state_representation)
 
         if tic_tac_toe.is_leaf(state):
             reward = tic_tac_toe.goodness(state, "X")
@@ -69,4 +70,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
