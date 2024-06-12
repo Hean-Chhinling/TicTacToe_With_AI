@@ -169,7 +169,8 @@ def start_screen():
 
 
 def main():
-    """Handling the entire graphical movements of the game in a higher level"""
+    """Handling the entire graphical movements of the game between
+        Human and Agent in a higher level"""
     global state, state_representation, is_done, result_text, game_started
     state = tic_tac_toe.initial
     state_representation = state_to_str(state)

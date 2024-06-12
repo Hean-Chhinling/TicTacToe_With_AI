@@ -70,6 +70,7 @@ class TicTacToe:
         return state['result'] != 0 or len(state['steps']) == 0
 
     def print(self, state):
+        """Displaying the board game to the console"""
         board = state['board']
         for x in range(1, self.h + 1):
             for y in range(1, self.w + 1):
